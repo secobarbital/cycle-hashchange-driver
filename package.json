@@ -1,7 +1,7 @@
 {
-  "name": "cycle-navigation-driver",
+  "name": "cycle-hashchange-driver",
   "version": "0.0.1",
-  "description": "A Cycle.js driver for working with the current URL",
+  "description": "A Cycle.js driver for working with the onhashchange API",
   "main": "lib/index.js",
   "scripts": {
     "standard": "standard src",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/secobarbital/cycle-navigation-driver.git"
+    "url": "https://github.com/secobarbital/cycle-hashchange-driver.git"
   },
   "author": "Seggy Umboh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/secobarbital/cycle-navigation-driver/issues"
+    "url": "https://github.com/secobarbital/cycle-hashchange-driver/issues"
   },
-  "homepage": "https://github.com/secobarbital/cycle-navigation-driver#readme",
+  "homepage": "https://github.com/secobarbital/cycle-hashchange-driver#readme",
   "devDependencies": {
     "babel": "^5.8.23",
     "faucet": "0.0.1",
