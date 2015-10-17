@@ -6,14 +6,9 @@ function noHashChangeDriver (navigate$) {
     .startWith(global.location.hash)
 }
 
-function hashChangeDriver (navigate$) {
+function hashChangeDriver () {
   const hashChange$ = Rx.Observable.fromEvent(global, 'hashchange')
-    .map(e => e.newUrl)
-
-  navigate$
-    .subscribe(hash => {
-      global.location.hash = hash
-    })
+    .map(e => e.newUrl.split('#').slice(1).join('#'))
 
   return hashChange$
     .startWith(global.location.hash)

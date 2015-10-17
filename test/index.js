@@ -75,10 +75,9 @@ test('makeHashChangeDriver should return hashChangeDriver if onhashchange is ava
 test('hashChangeDriver should respond to hashchange', t => {
   const originals = setupHashChange()
   const driver = makeHashChangeDriver()
-  const navigate$ = Rx.Observable.empty()
-  const hashchangeEvent = { newUrl: '/home', oldUrl: '/current' }
+  const hashchangeEvent = { newUrl: 'http://www.test/app#/home', oldUrl: 'http://www.test/app#/current' }
   const output = []
-  driver(navigate$)
+  driver()
     .take(2)
     .subscribe(
       url => output.push(url),
