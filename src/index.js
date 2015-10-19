@@ -1,17 +1,19 @@
 import { Rx } from '@cycle/core'
 
-function noHashChangeDriver (navigate$) {
-  navigate$.subscribe()
-  return Rx.Observable.never()
-    .startWith(global.location.hash)
+function normalizeHash (hash) {
+  return hash.split('#').slice(1).join('#')
+}
+
+function noHashChangeDriver () {
+  return Rx.Observable.just(global.location.hash)
+    .map(normalizeHash)
 }
 
 function hashChangeDriver () {
-  const hashChange$ = Rx.Observable.fromEvent(global, 'hashchange')
-    .map(e => e.newUrl.split('#').slice(1).join('#'))
-
-  return hashChange$
+  return Rx.Observable.fromEvent(global, 'hashchange')
+    .pluck('newURL')
     .startWith(global.location.hash)
+    .map(normalizeHash)
     .distinctUntilChanged()
 }
 

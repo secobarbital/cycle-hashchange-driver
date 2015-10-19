@@ -26,7 +26,7 @@ function setupHashChange () {
   const originals = saveOriginals()
   global.onhashchange = sinon.spy()
   global.location = {
-    hash: '/current'
+    hash: '#current'
   }
   setupListeners()
   return originals
@@ -75,7 +75,6 @@ test('makeHashChangeDriver should return hashChangeDriver if onhashchange is ava
 test('hashChangeDriver should respond to hashchange', t => {
   const originals = setupHashChange()
   const driver = makeHashChangeDriver()
-  const hashchangeEvent = { newUrl: 'http://www.test/app#/home', oldUrl: 'http://www.test/app#/current' }
   const output = []
   driver()
     .take(2)
@@ -84,15 +83,13 @@ test('hashChangeDriver should respond to hashchange', t => {
       t.error,
       () => {
         t.deepEqual(
-          output, ['/current', '/home'],
+          output, ['current', 'home'],
           'should emit on hashchange only when it is different from previous')
       }
     )
   t.equal(global.eventListeners.hashchange.length, 1, 'should be listening to hashchange')
   const hashchangeListener = global.eventListeners.hashchange[0]
-  hashchangeListener(hashchangeEvent)
-  global.location.hash = '/home'
-  hashchangeListener(hashchangeEvent)
+  hashchangeListener({ newURL: 'http://www.test/app#home', oldURL: 'http://www.test/app#current' })
   teardown(originals)
   t.end()
 })
