@@ -1,7 +1,7 @@
 import test from 'tape'
 import sinon from 'sinon'
-import { Rx } from '@cycle/core'
-import { makePushStateDriver, makeHashChangeDriver } from '../src'
+import Rx from 'rx'
+import { makeHashChangeDriver } from '../src'
 
 function setupListeners () {
   global.eventListeners = []

@@ -1,4 +1,4 @@
-import { Rx } from '@cycle/core'
+import Rx from 'rx'
 
 function normalizeHash (hash) {
   return hash.split('#').slice(1).join('#')
